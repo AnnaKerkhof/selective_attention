@@ -1,0 +1,42 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    Welcome!
+{% endblock %}
+
+{% block content %}
+<p>
+    Thank you very much for participating in our survey.
+</p>
+
+
+<p>
+    To complete the survey, you will need around <strong> 20 minutes</strong>.
+</p>
+<p>
+    Note: Participating in the survey is completely voluntary and you can quit at any time.<br>
+    However, to enable us to use your data for research purposes, you must answer every single question. <br>
+    Moreover, if you decide to quit the survey, you will lose your chance for potential bonus payments.
+</p>
+
+<input type="hidden" name="timeSpent_Welcome" id="timeSpent_Welcome"/>
+
+<script>
+    var pageTimeElapsed = 0;
+    var pageTimerID = -1;
+    function pageTick() {
+    pageTimeElapsed++
+    document.getElementById("timeSpent_Welcome").value = pageTimeElapsed;
+    }
+    window.onload = function() {
+    if(pageTimerID == -1){
+    pageTimerID = setInterval(pageTick, 1);
+  }
+};
+</script>
+
+
+{% next_button %}
+
+{% endblock %}
