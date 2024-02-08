@@ -1,0 +1,218 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    Person 20
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+
+    <div class="column" style="padding-right: 2em;" >
+
+<p> Please indicate the probability with which you think that <br>
+    the statement is true. </p>
+<p>
+    <img src="{% static image_path %}" width="128" height="128"/>
+</p>
+
+{% if player.check_order == "high_low" %}
+<table cellpadding="3">
+    <tr>
+        <th> </th>
+        <th> </th>
+    </tr>
+    <tr>
+        <td style="padding-right:10px">
+            1.) Statement 1
+            {% if l1_h == Constants.label %} <img src = "{% static 'implied_reliability/Label.png' %}" width="40" height="30" /> {% endif %}
+        </td>
+        <td>   </td>
+    </tr>
+    <tr>
+        <td style="padding-right:10px">
+            2.) Statement 2
+            {% if l2_h == Constants.label %} <img src = "{% static 'implied_reliability/Label.png' %}" width="40" height="30" /> {% endif %}
+        </td>
+        <td>   </td>
+    </tr>
+    <tr>
+        <td style="padding-right:10px">
+            3.) Statement 3
+            {% if l3_h == Constants.label %} <img src = "{% static 'implied_reliability/Label.png' %}" width="40" height="30" /> {% endif %}
+        </td>
+        <td>   </td>
+    </tr>
+    <tr>
+        <td style="padding-right:10px">
+            4.) Statement 4
+            {% if l4_h == Constants.label %} <img src = "{% static 'implied_reliability/Label.png' %}" width="40" height="30" /> {% endif %}
+        </td>
+        <td>  </td>
+    </tr>
+    <tr>
+        <td style="padding-right:10px">
+            5.) Statement 5
+            {% if l5_h == Constants.label %} <img src = "{% static 'implied_reliability/Label.png' %}" width="40" height="30" /> {% endif %}
+        </td>
+        <td>  </td>
+    </tr>
+    <tr>
+        <td style="padding-right:10px">
+            6.) Statement 6
+            {% if l6_h == Constants.label %} <img src = "{% static 'implied_reliability/Label.png' %}" width="40" height="30" /> {% endif %}
+        </td>
+        <td>  </td>
+    </tr>
+    <tr>
+        <td style="padding-right:10px">
+            7.) Statement 7
+            {% if l7_h == Constants.label %} <img src = "{% static 'implied_reliability/Label.png' %}" width="40" height="30" /> {% endif %}
+        </td>
+        <td>   </td>
+    </tr>
+    <tr>
+        <td style="padding-right:10px">
+            8.) Statement 8
+            {% if l8_h == Constants.label %} <img src = "{% static 'implied_reliability/Label.png' %}" width="40" height="30" /> {% endif %}
+        </td>
+        <td>   </td>
+    </tr>
+    <tr>
+        <td style="padding-right:10px">
+            9.) Statement 9
+            {% if l9_h == Constants.label %} <img src = "{% static 'implied_reliability/Label.png' %}" width="40" height="30" /> {% endif %}
+        </td>
+        <td>  </td>
+    </tr>
+        <td style="padding-right:10px">
+            10.) <img src = "{% static 'implied_reliability/Blur2.png' %}" width="150" height="40" /></td>
+        </td>
+        <td>  <strong> Your answer </strong> <br>
+            {{ form.prob_9110_true }} </td>
+    </tr>
+</table>
+{% endif %}
+
+
+{% if player.check_order == "low_high" %}
+<table cellpadding="3">
+    <tr>
+        <th> </th>
+        <th>  </th>
+    </tr>
+    <tr>
+        <td style="padding-right:10px">
+            1.) Statement 1
+            {% if l1_l == Constants.label %} <img src = "{% static 'implied_reliability/Label.png' %}" width="40" height="30" /> {% endif %}
+        </td>
+        <td>  </td>
+    </tr>
+    <tr>
+        <td style="padding-right:10px">
+            2.) Statement 2
+            {% if l2_l == Constants.label %} <img src = "{% static 'implied_reliability/Label.png' %}" width="40" height="30" /> {% endif %}
+        </td>
+        <td>  </td>
+    </tr>
+    <tr>
+        <td style="padding-right:10px">
+            3.) Statement 3
+            {% if l3_l == Constants.label %} <img src = "{% static 'implied_reliability/Label.png' %}" width="40" height="30" /> {% endif %}
+        </td>
+        <td>  </td>
+    </tr>
+    <tr>
+        <td style="padding-right:10px">
+            4.) Statement 4
+            {% if l4_l == Constants.label %} <img src = "{% static 'implied_reliability/Label.png' %}" width="40" height="30" /> {% endif %}
+        </td>
+        <td>  </td>
+    </tr>
+    <tr>
+        <td style="padding-right:10px">
+            5.) Statement 5
+            {% if l5_l == Constants.label %} <img src = "{% static 'implied_reliability/Label.png' %}" width="40" height="30" /> {% endif %}
+        </td>
+        <td>  </td>
+    </tr>
+    <tr>
+        <td style="padding-right:10px">
+            6.) Statement 6
+            {% if l6_l == Constants.label %} <img src = "{% static 'implied_reliability/Label.png' %}" width="40" height="30" /> {% endif %}
+        </td>
+        <td>  </td>
+    </tr>
+    <tr>
+        <td style="padding-right:10px">
+            7.) Statement 7
+            {% if l7_l == Constants.label %} <img src = "{% static 'implied_reliability/Label.png' %}" width="40" height="30" /> {% endif %}
+        </td>
+        <td> </td>
+    </tr>
+    <tr>
+        <td style="padding-right:10px">
+            8.) Statement 8
+            {% if l8_l == Constants.label %} <img src = "{% static 'implied_reliability/Label.png' %}" width="40" height="30" /> {% endif %}
+        </td>
+        <td>  </td>
+    </tr>
+    <tr>
+        <td style="padding-right:10px">
+            9.) Statement 9
+            {% if l9_l == Constants.label %} <img src = "{% static 'implied_reliability/Label.png' %}" width="40" height="30" /> {% endif %}
+        </td>
+        <td>  </td>
+    </tr>
+        <td style="padding-right:10px">
+            10.) <img src = "{% static 'implied_reliability/Blur2.png' %}" width="150" height="40" /></td>
+        </td>
+        <td>  <strong> Your answer </strong> <br>
+            {{ form.prob_9110_true }} </td>
+    </tr>
+</table>
+{% endif %}
+
+        {% next_button %}
+</div>
+
+
+<p>
+</p>
+
+
+<input type="hidden" name="timeSpent_Main_b1_910" id="timeSpent_Main_b1_910"/>
+
+<script>
+    var pageTimeElapsed = 0;
+    var pageTimerID = -1;
+    function pageTick() {
+    pageTimeElapsed++
+    document.getElementById("timeSpent_Main_b1_910").value = pageTimeElapsed;
+    }
+    window.onload = function() {
+    if(pageTimerID == -1){
+    pageTimerID = setInterval(pageTick, 1);
+  }
+};
+</script>
+
+   <style>
+/* Create two equal columns that floats next to each other */
+.column {
+  float: left;
+}
+
+.left {
+  width: 50%;
+}
+
+.right {
+  width: 50%;
+}
+</style>
+
+
+
+{% endblock %}

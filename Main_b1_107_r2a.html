@@ -1,0 +1,99 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    Person 27
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+
+    <div class="column" style="padding-right: 2em;" >
+
+<p> Please indicate the probability with which you think that <br>
+    the statement is true. </p>
+<p>
+    <img src="{% static image_path %}" width="128" height="128"/>
+</p>
+
+{% if player.check_order == "high_low" %}
+<table >
+    <tr>
+        <th> </th>
+        <th> Your answer </th>
+    </tr>
+    <tr>
+        <td style="padding-right:30px">
+            Statement 1
+            {% if a_h == Constants.label %} <img src = "{% static 'implied_reliability/Label.png' %}" width="40" height="30" /> {% endif %}
+        </td>
+        <td> {{ form.prob_17_true }} </td>
+    </tr>
+    <tr>
+        <td style="padding-bottom:50px"> </td><td style="padding-bottom:50px"></td>
+    </tr>
+</table>
+{% endif %}
+
+{% if player.check_order == "low_high" %}
+<table >
+    <tr>
+        <th> </th>
+        <th> Your answer </th>
+    </tr>
+    <tr>
+        <td style="padding-right:30px">
+            Statement 1
+            {% if a_l == Constants.label %} <img src = "{% static 'implied_reliability/Label.png' %}" width="40" height="30" /> {% endif %}
+        </td>
+        <td> {{ form.prob_17_true }} </td>
+    </tr>
+    <tr>
+        <td style="padding-bottom:50px"> </td><td style="padding-bottom:50px"></td>
+    </tr>
+</table>
+{% endif %}
+                {% next_button %}
+</div>
+
+
+<p>
+
+</p>
+
+
+<input type="hidden" name="timeSpent_Main_b1_107" id="timeSpent_Main_b1_107"/>
+
+<script>
+    var pageTimeElapsed = 0;
+    var pageTimerID = -1;
+    function pageTick() {
+    pageTimeElapsed++
+    document.getElementById("timeSpent_Main_b1_107").value = pageTimeElapsed;
+    }
+    window.onload = function() {
+    if(pageTimerID == -1){
+    pageTimerID = setInterval(pageTick, 1);
+  }
+};
+</script>
+
+   <style>
+/* Create two equal columns that floats next to each other */
+.column {
+  float: left;
+}
+
+.left {
+  width: 50%;
+}
+
+.right {
+  width: 50%;
+}
+</style>
+
+
+
+{% endblock %}
