@@ -1,2 +1,2 @@
 # selective_attention
-Preliminary otree/Python and HTML code for our experiment. 
+PRELIMINARY and INCOMPLETE otree/Python and HTML code for our experiment. 
