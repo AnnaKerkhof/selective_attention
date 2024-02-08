@@ -1,0 +1,470 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+
+{% endblock %}
+{% block content %}
+
+
+<style>
+    .tab {
+        display: none;
+    }
+</style>
+
+
+
+
+<div class="tab">
+
+<h2> Overview </h2>
+<p>
+    In this survey, your task is to <strong>estimate</strong> whether several hypothetical persons make <strong>true or false statements.</strong> <br>
+    Each estimation task has the following structure, which will be explained in greater detail on the next screens.
+</p>
+
+<p>
+    <ul>
+    <li> Before a person is presented to you, the computer randomly determines whether the person is <strong>reliable</strong> or <strong>unreliable</strong>. <br>
+        The <strong>probability</strong> for each type is <strong>50%.</strong></li>
+    <li> After it is randomly determined whether the person is reliable or unreliable, the person makes
+        one or several <strong>statements</strong>.</li>
+<li> An independent <strong>fact checker</strong> then potentially checks each statement. <br>
+    {% if player.check_order == "high_low" %}
+    Each statement is checked with a <strong>probability of 75%.</strong> </li>
+    {% endif %}
+    {% if player.check_order == "low_high" %}
+    Each statement is checked with a <strong>probability of 25%.</strong> </li>
+    {% endif %}
+</ul>
+</p>
+
+
+<p>
+    Your <strong>bonus payment</strong> in this survey depends partly on chance
+    and partly on how close your estimates are to the correct answers.
+</p>
+<p>
+   <strong>Therefore, please read the following instructions carefully!</strong>
+
+        <p>
+        <button type="button" class="btn btn-primary btn-tab" data-offset="1">Next</button>
+    </p>
+</div>
+
+
+
+
+
+
+
+<div class="tab">
+
+
+<h2> Reliable and Unreliable Persons </h2>
+
+<p>
+    Before a person is presented to you, the computer <strong>randomly</strong> determines whether the person is
+    <strong>reliable</strong> or <strong>unreliable</strong>. <br>
+    The probability for each type is <strong>50%</strong>.
+</p>
+ <p>
+    Statements by <strong>reliable</strong> persons are <strong>more likely to be correct</strong> than statements by unreliable persons.
+     </p>
+    <p>
+     In particular:
+</p>
+<ul>
+
+    <li> A statement by a <strong> Reliable Person</strong> is true with a <strong> probability of {{ Constants.Type2_true }}</strong>. <br>
+        Note that this does not mean that exactly eight out of ten statements must be correct! <br>
+        Rather, each single statement is true with a probability of {{ Constants.Type2_true }}.
+    </li>
+
+    <li> A statement by an <strong>Unreliable Person</strong> is true with a <strong> probability of {{ Constants.Type1_true }}</strong>. <br>
+        Note that this does not mean that exactly two out of ten statements must be correct! <br>
+       Rather, each single statement is true with a probability of {{ Constants.Type1_true }}.
+    </li>
+
+</ul>
+
+    <p>
+        <strong>NOTE:</strong> A person's type is <strong> never displayed </strong> to you. The information from the <strong>fact checker</strong>, <br>
+        which we explain in detail on the next screen, may help you to guess whether a person is more likely to be reliable or unreliable!
+    </p>
+
+    <p>
+        <button type="button" class="btn btn-primary btn-tab" data-offset="-1">Back</button>
+        <button type="button" class="btn btn-primary btn-tab" data-offset="1">Next</button>
+    </p>
+</div>
+
+
+
+
+
+
+<div class="tab">
+
+
+<h2> Fact checker </h2>
+
+
+{% if player.check_order == "high_low" %}
+    <p>
+         Each statement is checked with a <strong>probability of 75%</strong> by the fact checker.  <br>
+        Note that this does not mean that exactly seven and a half out of ten statements are checked! <br>
+       Rather, each single statement is checked with a probability of 75%.
+    </p>
+{% endif %}
+
+{% if player.check_order == "low_high" %}
+       <p>
+         Each statement is checked with a <strong>probability of 25%</strong> by the fact checker.  <br>
+        Note that this does not mean that exactly two and a half out of ten statements are checked! <br>
+       Rather, each single statement is checked with a probability of 25%.
+    </p>
+{% endif %}
+
+<p>
+   The fact checker is <strong>always correct</strong>. There are hence three types of statements:
+</p>
+
+    <p>
+        <ul>
+    <li>If the fact checker checks a statement and detects that it is <strong>false</strong>, the statement is labelled with: <br>
+          <img src = "{% static 'implied_reliability/Label.png' %}" width="80" height="60" /> </li>
+    <li>If the fact checker checks a statement and detects that it is <strong>correct</strong>, there is <strong>NO label</strong>.</li>
+    <li>If the fact checker does <strong>not check</strong> a statement (and the statement is either true or false), <br>
+        there is <strong>NO label</strong> either.
+    </li>
+</ul>
+    </p>
+
+
+    <p>
+       <strong>Please note the following two implications:</strong>
+        <ul>
+    <li>Whenever you see the <img src = "{% static 'implied_reliability/Label.png' %}" width="24" height="18" />
+            <strong>label</strong> next to a statement, you know it must be <strong>false</strong>. <br>
+        In other words, the probability that such a statement is correct is <strong>0%.</strong> </li>
+    <li> Whenever you see <strong>no label</strong> next to a statement, you <strong>cannot know</strong> for sure whether
+        the statement was <strong>checked</strong> <br>
+        and is <strong>true</strong>, or the statement was <strong>not checked</strong> and can either be <strong>true or false</strong>.
+        </ul>
+    </p>
+
+    <p>
+        <button type="button" class="btn btn-primary btn-tab" data-offset="-1">Back</button>
+        <button type="button" class="btn btn-primary btn-tab" data-offset="1">Next</button>
+    </p>
+</div>
+
+
+
+
+<div class="tab">
+
+<p>
+    On the next screen, we show you an <strong>example</strong> with 10 statements.
+</p>
+    <p>
+       Note that, like in this example, we will not show you actual statements in the estimation exercise. <br>
+        Please recall the structure of the estimation task:
+    </p>
+<p>
+    <ol>
+    <li>
+        The computer randomly determines whether the person is <strong>reliable or unreliable</strong>.
+        <ul>
+            <li>
+                The probability for each type is <strong>50%</strong>.
+            </li>
+            <li>
+                <strong>Reliable </strong>persons make <strong>true</strong> statements with <strong>80% probability</strong>.
+            </li>
+            <li>
+                <strong>Unreliable </strong>persons make <strong>true</strong> statements with <strong>20% probability</strong>.
+            </li>
+        </ul>
+    </li>
+    <li>The person makes one or several <strong>statements</strong>.
+        <ul>
+            <li>
+                In the following example, there will be 10 statements.
+            </li>
+        </ul>
+    </li>
+
+    <li>
+        {% if player.check_order == "high_low" %}
+        With a <strong>probability of 75%</strong>, each statement from a person is checked by the independent <strong>fact checker</strong>.
+        {% endif %}
+        {% if player.check_order == "low_high" %}
+        With a <strong>probability of 25%</strong>, each statement from a person is checked by the independent <strong>fact checker</strong>.
+        {% endif %}
+    <ul>
+        <li>
+            The fact checker is always <strong>right</strong>.
+            </li>
+        <li>
+            If the fact checker checked a statement and the statement is <strong>false</strong>, the <img src = "{% static 'implied_reliability/Label.png' %}" width="24" height="18" />
+            <strong>label</strong> is attached to the statement.
+            </li>
+        <li>
+            <strong>No labels</strong> appear at statements that have <strong>not been checked</strong> or that have been <strong>checked and are true</strong>.
+            </li>
+        <li>
+            The information from the fact checker may help you to guess whether it is more likely that the person is <br>
+            reliable or unreliable.
+        </li>
+    </ul>
+    </li>
+</ol>
+</p>
+
+  <p>
+        <button type="button" class="btn btn-primary btn-tab" data-offset="-1">Back</button>
+        <button type="button" class="btn btn-primary btn-tab" data-offset="1">Next</button>
+    </p>
+  </div>
+
+
+<div class="tab">
+
+
+<h2> Example </h2>
+
+
+ <p>
+    <img src = "{% static 'AI_Fotos/Pic1.jpg' %}" width="128" height="128" />
+</p>
+
+    <table cellpadding="3">
+    <tr>
+        <th> </th>
+        <th> </th>
+    </tr>
+    <tr>
+        <td style="padding-right:10px">
+            1.) Statement 1
+            {% if player.check_order == "high_low" %}
+            <img src = "{% static 'implied_reliability/Label.png' %}" width="40" height="30" />
+            {% endif %}
+        </td>
+        <td>  </td>
+    </tr>
+    <tr>
+        <td style="padding-right:10px">
+            2.) Statement 2
+        </td>
+        <td>  </td>
+    </tr>
+    <tr>
+        <td style="padding-right:10px">
+            3.) Statement 3
+             <img src = "{% static 'implied_reliability/Label.png' %}" width="40" height="30" />
+        </td>
+        <td> </td>
+    </tr>
+    <tr>
+        <td style="padding-right:10px">
+            4.) Statement 4
+        </td>
+        <td>  </td>
+    </tr>
+    <tr>
+        <td style="padding-right:10px">
+            5.) Statement 5
+            {% if player.check_order == "high_low" %}
+             <img src = "{% static 'implied_reliability/Label.png' %}" width="40" height="30" />
+            {% endif %}
+        </td>
+        <td>  </td>
+    </tr>
+    <tr>
+        <td style="padding-right:10px">
+            6.) Statement 6
+        </td>
+        <td>  </td>
+    </tr>
+    <tr>
+        <td style="padding-right:10px">
+            7.) Statement 7
+            <img src = "{% static 'implied_reliability/Label.png' %}" width="40" height="30" />
+
+        </td>
+        <td>   </td>
+    </tr>
+    <tr>
+        <td style="padding-right:10px">
+            8.) Statement 8
+            {% if player.check_order == "high_low" %}
+             <img src = "{% static 'implied_reliability/Label.png' %}" width="40" height="30" />
+            {% endif %}
+        </td>
+        <td>   </td>
+    </tr>
+    <tr>
+        <td style="padding-right:10px">
+            9.) Statement 9
+            {% if player.check_order == "high_low" %}
+             <img src = "{% static 'implied_reliability/Label.png' %}" width="40" height="30" />
+            {% endif %}
+        </td>
+        <td> </td>
+    </tr>
+        <td style="padding-right:10px">
+            10.) Statement 10</td>
+        </td>
+        <td>
+            <strong>Your answer</strong> <br>
+            {{ form.demo_true }}  </td>
+    </tr>
+</table>
+
+
+       <table cellpadding="10">
+           <tr>
+        <th> </th>
+        <th> </th>
+    </tr>
+       </table>
+
+
+<h4> Your task </h4>
+<p>
+    Please state the <strong>probability that statement 10 is true</strong>. <br>
+    Insert numbers between <strong>“0”</strong> (for 0%) and <strong>“100”</strong> (for 100%) to indicate your estimate.<br>
+
+</p>
+
+
+<h5> Note </h5>
+    {% if player.check_order == "high_low" %}
+<p>
+    Statements 1, 3, 5, 7, 8, and 9 in the example have been <strong>checked</strong> by the fact checker, <br>
+and the fact checker detected that these statements are <strong>false</strong>. <br>
+    Thus, the correct probability that the statements with the <img src = "{% static 'implied_reliability/Label.png' %}" width="24" height="18" />
+    <strong>label</strong> are true is <strong>0%</strong>!
+</p>
+<p>
+   Statements 2, 4, 6, and 10 are <strong>NOT labelled</strong>, which means that you do <strong>not know for sure</strong> whether they were checked <br>
+    by the fact checker (and are true) or whether they were not checked by the fact checker (and could either be true or false). <br>
+    Then you do not know with certainty whether these statements without labels are true or false.
+</p>
+{% endif %}
+
+
+
+    {% if player.check_order == "low_high" %}
+<p>
+    Statements 3 and 7 in the example have been <strong>checked</strong> by the fact checker, <br>
+and the fact checker detected that these statements are <strong>false</strong>. <br>
+     Thus, the correct probability that the statements with the <img src = "{% static 'implied_reliability/Label.png' %}" width="24" height="18" />
+    <strong>label</strong> are true is <strong>0%</strong>!
+</p>
+<p>
+   Statements 1, 2, 4, 5, 6, 8, 9 and 10 are <strong>NOT labelled</strong>, which means that you do <strong>not know for sure</strong> whether they were checked <br>
+    by the fact checker (and are true) or whether they were not checked by the fact checker (and could either be true or false).<br>
+    Then you do not know with certainty whether these statements without labels are true or false.
+</p>
+    {% endif %}
+
+    <p>
+        <button type="button" class="btn btn-primary btn-tab" data-offset="-1">Back</button>
+        <button type="button" class="btn btn-primary btn-tab" data-offset="1">Next</button>
+    </p>
+</div>
+
+
+
+
+<div class="tab">
+
+    <h2> Bonus payment </h2>
+
+
+
+    <p>
+        After the survey, we will randomly select several participants. <br>
+        These participants have the chance to earn a <strong> bonus payment
+        of 10 USD. </strong> <br>
+        The selected participants will receive the payment via their Prolific account.
+</p>
+
+<p>
+    Of the selected participants, we will randomly draw one estimation.<br>
+     The chance to get the bonus payment depends on this estimation.
+</p>
+
+<p>
+   <strong>The closer the estimation is to the truth, the higher the chance for the bonus payment.</strong><br>
+     Note: The "truth" is equal to 0 if the statement is false, and equal to 100 if the statement is correct.
+</p>
+
+    <p>
+        You will receive further details on your potential bonus payment at the end of the survey.
+    </p>
+
+
+
+
+
+
+
+<table cellpadding="30">
+    <tr>
+        <th> </th>
+        <th>  </th>
+    </tr>
+</table>
+    <p>
+        <button type="button" class="btn btn-primary btn-tab" data-offset="-1">Back</button>
+        <button class="btn btn-primary">Next</button>
+    </p>
+</div>
+
+
+
+<script>
+
+    let activeTab = 0;
+
+    function showCurrentTabOnly() {
+        let tabIndex = 0;
+        for (let tab of document.getElementsByClassName('tab')) {
+            tab.style.display = tabIndex === activeTab ? 'block' : 'none';
+            tabIndex++;
+        }
+    }
+
+    showCurrentTabOnly();
+    for (let btn of document.getElementsByClassName('btn-tab')) {
+        btn.onclick = function () {
+            activeTab += parseInt(btn.dataset.offset);
+            showCurrentTabOnly();
+        }
+    }
+</script>
+
+
+
+<input type="hidden" name="timeSpent_Instructions_BackAndForth" id="timeSpent_Instructions_BackAndForth"/>
+
+<script>
+    var pageTimeElapsed = 0;
+    var pageTimerID = -1;
+    function pageTick() {
+    pageTimeElapsed++
+    document.getElementById("timeSpent_Instructions_BackAndForth").value = pageTimeElapsed;
+    }
+    window.onload = function() {
+    if(pageTimerID == -1){
+    pageTimerID = setInterval(pageTick, 1);
+  }
+};
+</script>
+
+{% endblock %}

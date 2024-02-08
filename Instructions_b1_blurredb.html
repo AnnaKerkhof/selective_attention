@@ -1,0 +1,39 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+
+{% endblock %}
+{% block content %}
+
+
+<p>
+    You will now see <strong>1 person</strong> with <strong>1 statement</strong>.
+</p>
+<p>
+    Please insert the probability with which the statement is true.
+</p>
+<p>
+    Keep in mind that the fact checker <strong>cannot check</strong> the statement.
+</p>
+
+
+<input type="hidden" name="timeSpent_Instructions_b1_blurredb" id="timeSpent_Instructions_b1_blurredb"/>
+
+<script>
+    var pageTimeElapsed = 0;
+    var pageTimerID = -1;
+    function pageTick() {
+    pageTimeElapsed++
+    document.getElementById("timeSpent_Instructions_b1_blurredb").value = pageTimeElapsed;
+    }
+    window.onload = function() {
+    if(pageTimerID == -1){
+    pageTimerID = setInterval(pageTick, 1);
+  }
+};
+</script>
+
+
+{% next_button %}
+{% endblock %}

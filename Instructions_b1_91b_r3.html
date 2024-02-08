@@ -1,0 +1,39 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+
+{% endblock %}
+{% block content %}
+
+
+<p>
+     You will now see <strong> 10 persons </strong> with <strong> 10 statements </strong> per person.
+</p>
+<p>
+    For each person, you are asked to evaluate the blurred statement.
+</p>
+<p>
+    Keep in mind that the fact checker can only check the visible statements. <br>
+    Thus, the blurred statement will never be checked.
+</p>
+
+
+<input type="hidden" name="timeSpent_Instructions_b1_91b" id="timeSpent_Instructions_b1_91b"/>
+
+<script>
+    var pageTimeElapsed = 0;
+    var pageTimerID = -1;
+    function pageTick() {
+    pageTimeElapsed++
+    document.getElementById("timeSpent_Instructions_b1_91b").value = pageTimeElapsed;
+    }
+    window.onload = function() {
+    if(pageTimerID == -1){
+    pageTimerID = setInterval(pageTick, 1);
+  }
+};
+</script>
+
+{% next_button %}
+{% endblock %}

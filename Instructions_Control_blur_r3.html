@@ -1,0 +1,43 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+Understood?
+{% endblock %}
+
+{% block content %}
+
+<p>
+    <strong> Please check if you understood the instructions correctly. </strong>
+</p>
+
+<p>
+    Which of the following statements is true?
+</p>
+<p>
+    {{ form.control_blur }}<br>
+    <br>
+</p>
+
+
+
+<input type="hidden" name="timeSpent_Instructions_Control_blur" id="timeSpent_Instructions_Control_blur"/>
+
+<script>
+    var pageTimeElapsed = 0;
+    var pageTimerID = -1;
+    function pageTick() {
+    pageTimeElapsed++
+    document.getElementById("timeSpent_Instructions_Control_blur").value = pageTimeElapsed;
+    }
+    window.onload = function() {
+    if(pageTimerID == -1){
+    pageTimerID = setInterval(pageTick, 1);
+  }
+};
+</script>
+
+
+    {% next_button %}
+
+{% endblock %}

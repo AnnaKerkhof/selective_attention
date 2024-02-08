@@ -1,0 +1,32 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+Excellent!
+{% endblock %}
+
+{% block content %}
+<p>
+    You answered all questions correctly.
+</p>
+
+
+<input type="hidden" name="timeSpent_Instructions_ControlOK" id="timeSpent_Instructions_ControlOK"/>
+
+<script>
+    var pageTimeElapsed = 0;
+    var pageTimerID = -1;
+    function pageTick() {
+    pageTimeElapsed++
+    document.getElementById("timeSpent_Instructions_ControlOK").value = pageTimeElapsed;
+    }
+    window.onload = function() {
+    if(pageTimerID == -1){
+    pageTimerID = setInterval(pageTick, 1);
+  }
+};
+</script>
+
+    {% next_button %}
+
+{% endblock %}

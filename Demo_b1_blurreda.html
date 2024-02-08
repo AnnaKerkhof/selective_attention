@@ -1,0 +1,76 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+Practice page
+{% endblock %}
+{% block content %}
+
+
+
+<div class="container">
+
+    <div class="column" style="padding-right: 2em;" >
+
+<p> Please indicate the probability with which you think that <br>
+    the statement is true. </p>
+
+
+<p>
+    <img src = "{% static 'AI_Fotos/Pic62.jpg' %}" width="128" height="128" />
+</p>
+<table >
+    <tr>
+        <th> </th>
+        <th> Your answer </th>
+    </tr>
+    <tr>
+        <td style="padding-right:30px">
+            1.)  <img src = "{% static 'implied_reliability/Blur1.png' %}" width="150" height="40" />
+        </td>
+        <td> {{ form.demo_blurred_true }} </td>
+    </tr>
+    <tr>
+        <td style="padding-bottom:50px"> </td><td style="padding-bottom:50px"></td>
+    </tr>
+</table>
+
+        {% next_button %}
+</div>
+
+
+
+<input type="hidden" name="timeSpent_Demo_b1_blurreda" id="timeSpent_Demo_b1_blurreda"/>
+
+<script>
+    var pageTimeElapsed = 0;
+    var pageTimerID = -1;
+    function pageTick() {
+    pageTimeElapsed++
+    document.getElementById("timeSpent_Demo_b1_blurreda").value = pageTimeElapsed;
+    }
+    window.onload = function() {
+    if(pageTimerID == -1){
+    pageTimerID = setInterval(pageTick, 1);
+  }
+};
+</script>
+
+  <style>
+/* Create two equal columns that floats next to each other */
+.column {
+  float: left;
+}
+
+.left {
+  width: 50%;
+}
+
+.right {
+  width: 50%;
+}
+</style>
+
+
+
+{% endblock %}

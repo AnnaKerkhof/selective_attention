@@ -1,0 +1,40 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    Final questions
+{% endblock %}
+
+{% block content %}
+<p>
+    <strong> Please answer the following questions. </strong>
+</p>
+
+<p>
+A professor gave his students two exams. <br>
+40% of the students passed both exams. 80% of the students passed the second exam. <br>
+How many students (in percent) who passed the second exam also passed the first exam ? <br>
+</p>
+<p>
+    {{ form.cognitive }}
+</p>
+
+<input type="hidden" name="timeSpent_Cognitive" id="timeSpent_Cognitive"/>
+
+<script>
+    var pageTimeElapsed = 0;
+    var pageTimerID = -1;
+    function pageTick() {
+    pageTimeElapsed++
+    document.getElementById("timeSpent_Cognitive").value = pageTimeElapsed;
+    }
+    window.onload = function() {
+    if(pageTimerID == -1){
+    pageTimerID = setInterval(pageTick, 1);
+  }
+};
+</script>
+
+{% next_button %}
+
+{% endblock %}

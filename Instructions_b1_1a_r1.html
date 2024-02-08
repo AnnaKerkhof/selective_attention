@@ -1,0 +1,40 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+
+{% endblock %}
+{% block content %}
+
+
+
+<p>
+    You will now see several persons with <strong> each 1 statement, </strong> where this statement may be checked by the fact checker.
+</p>
+<p>
+    For each statement, please insert the probability with which it is true.
+</p>
+<p>
+    Note: You will go through <strong> 1 practice page </strong> before you can start.
+</p>
+
+<input type="hidden" name="timeSpent_Instructions_b1_1a" id="timeSpent_Instructions_b1_1a"/>
+
+<script>
+    var pageTimeElapsed = 0;
+    var pageTimerID = -1;
+    function pageTick() {
+    pageTimeElapsed++
+    document.getElementById("timeSpent_Instructions_b1_1a").value = pageTimeElapsed;
+    }
+    window.onload = function() {
+    if(pageTimerID == -1){
+    pageTimerID = setInterval(pageTick, 1);
+  }
+};
+</script>
+
+
+
+{% next_button %}
+{% endblock %}

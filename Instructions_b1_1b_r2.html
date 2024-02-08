@@ -1,0 +1,37 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+
+{% endblock %}
+{% block content %}
+
+
+
+<p>
+    You will now see <strong> 10 persons </strong> with <strong> each 1 statement, </strong> where this statement may be checked by a fact checker.
+</p>
+<p>
+    For each statement, please insert the probability with which it is true.
+</p>
+
+
+<input type="hidden" name="timeSpent_Instructions_b1_1b" id="timeSpent_Instructions_b1_1b"/>
+
+<script>
+    var pageTimeElapsed = 0;
+    var pageTimerID = -1;
+    function pageTick() {
+    pageTimeElapsed++
+    document.getElementById("timeSpent_Instructions_b1_1b").value = pageTimeElapsed;
+    }
+    window.onload = function() {
+    if(pageTimerID == -1){
+    pageTimerID = setInterval(pageTick, 1);
+  }
+};
+</script>
+
+
+{% next_button %}
+{% endblock %}

@@ -1,0 +1,68 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+
+{% endblock %}
+{% block content %}
+
+
+<p>
+    You will now see several persons with <strong> 10 statements </strong> per person.
+</p>
+
+<p>
+    For each person, you are asked to evaluate statement 10.
+</p>
+
+<h5> Important change! </h5>
+<p>
+    <strong> 9 </strong> of the 10 statements are <strong> clearly visible. </strong> <br>
+    {% if player.check_order == "high_low" %}
+    As stated in the instructions, each of these nine statements <strong>may be checked</strong> by the fact checker, <br>
+    where each statement is checked with a <strong>probability of 75%.</strong>
+    {% endif %}
+    {% if player.check_order == "low_high" %}
+    As stated in the instructions, each of these nine statements <strong>may be checked</strong> by the fact checker, <br>
+    where each statement is checked with a <strong>probability of 25%.</strong>
+    {% endif %}
+</p>
+<p>
+    <strong>CHANGE:</strong> The fact checker <strong>CANNOT check statement 10</strong> of each person. <br>
+    Statement 10 may be true or false, like the first 9 statements. The only difference between them is that the <br>
+    fact checker CANNOT check statement 10.
+</p>
+<p>
+   To show you that <strong>statement 10 CANNOT</strong> be checked by the fact checker, it is <strong> blurry: </strong>
+    </p>
+
+<p>
+    <img src = "{% static 'implied_reliability/Blur1.png' %}" width="150" height="40" />
+</p>
+
+<p>
+    Note: You can check your understanding on the next page and will afterwards go through <strong> 1 practice page</strong>.
+</p>
+
+
+
+
+<input type="hidden" name="timeSpent_Instructions_b1_91a" id="timeSpent_Instructions_b1_91a"/>
+
+<script>
+    var pageTimeElapsed = 0;
+    var pageTimerID = -1;
+    function pageTick() {
+    pageTimeElapsed++
+    document.getElementById("timeSpent_Instructions_b1_91a").value = pageTimeElapsed;
+    }
+    window.onload = function() {
+    if(pageTimerID == -1){
+    pageTimerID = setInterval(pageTick, 1);
+  }
+};
+</script>
+
+
+{% next_button %}
+{% endblock %}

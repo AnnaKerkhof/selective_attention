@@ -1,0 +1,47 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+
+{% endblock %}
+
+{% block content %}
+
+{% if player.control_blur_X == "The blurred statement is checked with the same probability as the other statements." %}
+<h4> Wrong! </h4>
+<p>
+    The blurred statements are <strong>never</strong> checked by the fact checker.
+</p>
+{% endif %}
+
+{% if player.control_blur_X == "The blurred statement is never checked by the fact checker." %}
+<h4> Excellent! </h4>
+<p>
+    You answered the question correctly.
+</p>
+{% endif %}
+
+
+
+
+
+
+<input type="hidden" name="timeSpent_Instructions_Control_blurOK_X" id="timeSpent_Instructions_Control_blurOK_X"/>
+
+<script>
+    var pageTimeElapsed = 0;
+    var pageTimerID = -1;
+    function pageTick() {
+    pageTimeElapsed++
+    document.getElementById("timeSpent_Instructions_Control_blurOK_X").value = pageTimeElapsed;
+    }
+    window.onload = function() {
+    if(pageTimerID == -1){
+    pageTimerID = setInterval(pageTick, 1);
+  }
+};
+</script>
+
+    {% next_button %}
+
+{% endblock %}

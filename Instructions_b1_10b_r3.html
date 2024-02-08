@@ -1,0 +1,39 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+
+{% endblock %}
+{% block content %}
+
+
+
+<p>
+    You will now see <strong> 20 persons </strong> with <strong> each 10 statements, </strong> <br>
+    <strong>which may ALL be checked by the fact checker.</strong>
+</p>
+<p>
+    For each person, you are asked to evaluate statement 10.
+</p>
+
+
+
+<input type="hidden" name="timeSpent_Instructions_b1_10b" id="timeSpent_Instructions_b1_10b"/>
+
+<script>
+    var pageTimeElapsed = 0;
+    var pageTimerID = -1;
+    function pageTick() {
+    pageTimeElapsed++
+    document.getElementById("timeSpent_Instructions_b1_10b").value = pageTimeElapsed;
+    }
+    window.onload = function() {
+    if(pageTimerID == -1){
+    pageTimerID = setInterval(pageTick, 1);
+  }
+};
+</script>
+
+{% next_button %}
+
+{% endblock %}

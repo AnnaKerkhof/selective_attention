@@ -1,0 +1,173 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+Good!
+{% endblock %}
+
+{% block content %}
+<p>
+    You made just a few mistakes.
+</p>
+
+{% if player.control1 != 0 %}
+<h5>
+    Question 1:
+</h5>
+<p>
+    A statement by a hypothetical person is given this label: <br>
+    <img src = "{% static 'implied_reliability/Label.png' %}" width="80" height="55" /> <br>
+    What is the probability (in %) that the statement is correct?<br>
+</p>
+<p>
+    Your reply:
+    {{ player.control1 }}
+</p>
+<p>
+    <strong> Wrong. </strong><br>
+    <br>
+</p>
+<p>
+    The fact checker is always correct. <br>
+    Thus, if a statement is labeled as "false", it is true with a <br>
+    <strong> probability of 0%</strong>.
+</p>
+{% endif %}
+
+{% if player.check_order == "high_low" %}
+{% if player.control2 != Constants.c_high_int %}
+<h5>
+    Question 2:
+</h5>
+<p>
+   What is the probability (in %) that a statement has been checked? <br>
+</p>
+<p>
+    Your reply:
+    {{ player.control2 }}
+</p>
+<p>
+    <strong> Wrong. </strong><br>
+    <br>
+</p>
+<p>
+    Each statement is being checked with a <strong> probability of 75%</strong>.
+</p>
+{% endif %}
+{% endif %}
+
+
+{% if player.check_order == "low_high" %}
+{% if player.control2 != Constants.c_low_int %}
+<h5>
+    Question 2:
+</h5>
+<p>
+   What is the probability (in %) that a statement has been checked? <br>
+</p>
+<p>
+    Your reply:
+    {{ player.control2 }}
+</p>
+<p>
+    <strong> Wrong. </strong><br>
+    <br>
+</p>
+<p>
+    Each statement is being checked with a <strong> probability of 25%</strong>.
+</p>
+{% endif %}
+{% endif %}
+
+
+
+{% if player.control3 != 80 %}
+<h5>
+    Question 3:
+</h5>
+<p>
+   Consider an arbitrary statement by a reliable person. <br>
+    What is the probability (in %) that the statement is correct?
+</p>
+<p>
+    Your reply:
+    {{ player.control3 }}
+</p>
+<p>
+    <strong> Wrong. </strong><br>
+    <br>
+</p>
+<p>
+    Each statement by the reliable person is true with a <strong> probability of 80% </strong>.
+</p>
+{% endif %}
+
+
+
+
+{% if player.control4 != 20 %}
+<h5>
+    Question 4:
+</h5>
+<p>
+     Consider an arbitrary statement by an unreliable person. <br>
+     What is the probability (in %) that the statement is correct?<br>
+</p>
+<p>
+    Your reply:
+    {{ player.control4 }}
+</p>
+<p>
+    <strong> Wrong. </strong><br>
+    <br>
+</p>
+<p>
+    Each statement by the unreliable person is true with a <strong> probability of 20% </strong>.
+</p>
+{% endif %}
+
+
+
+{% if player.control5 != 50 %}
+<h5>
+    Question 5:
+</h5>
+<p>
+    Consider an arbitrary person of unknown type. <br>
+    What is the probability (in %) that the person is reliable? <br>
+</p>
+<p>
+    Your reply:
+    {{ player.control5 }}
+</p>
+<p>
+    <strong> Wrong. </strong><br>
+    <br>
+</p>
+<p>
+    The probability that a person is reliable is equal to <strong> 50% </strong>.
+</p>
+{% endif %}
+
+
+
+<input type="hidden" name="timeSpent_Instructions_ControlOK1" id="timeSpent_Instructions_ControlOK1"/>
+
+<script>
+    var pageTimeElapsed = 0;
+    var pageTimerID = -1;
+    function pageTick() {
+    pageTimeElapsed++
+    document.getElementById("timeSpent_Instructions_ControlOK1").value = pageTimeElapsed;
+    }
+    window.onload = function() {
+    if(pageTimerID == -1){
+    pageTimerID = setInterval(pageTick, 1);
+  }
+};
+</script>
+
+
+{% next_button %}
+
+{% endblock %}

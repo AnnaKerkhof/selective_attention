@@ -1,0 +1,80 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+Understood?
+{% endblock %}
+
+{% block content %}
+
+<p>
+    <strong> Please check if you understood the instructions correctly. </strong>
+</p>
+<h5>
+    Question 1:
+</h5>
+<p>
+    A statement by a hypothetical person is given this label: <br>
+    <img src = "{% static 'implied_reliability/Label.png' %}" width="80" height="55" /> <br>
+    What is the probability (in %) that the statement is correct?<br>
+    {{ form.control1 }}<br>
+    <br>
+</p>
+<h5>
+    Question 2:
+</h5>
+<p>
+    What is the probability (in %) that a statement has been checked? <br>
+    {{ form.control2 }}<br>
+    <br>
+</p>
+<h5>
+    Question 3:
+</h5>
+<p>
+    Consider an arbitrary statement by a reliable person. <br>
+    What is the probability (in %) that the statement is correct?<br>
+    {{ form.control3 }}<br>
+    <br>
+</p>
+
+<h5>
+    Question 4:
+</h5>
+<p>
+    Consider an arbitrary statement by an unreliable person. <br>
+    What is the probability (in %) that the statement is correct?<br>
+    {{ form.control4 }}<br>
+    <br>
+</p>
+
+<h5>
+    Question 5:
+</h5>
+<p>
+    Consider an arbitrary person of unknown type. <br>
+    What is the probability (in %) that the person is reliable?<br>
+    {{ form.control5 }}<br>
+    <br>
+</p>
+
+<input type="hidden" name="timeSpent_Instructions_Control" id="timeSpent_Instructions_Control"/>
+
+<script>
+    var pageTimeElapsed = 0;
+    var pageTimerID = -1;
+    function pageTick() {
+    pageTimeElapsed++
+    document.getElementById("timeSpent_Instructions_Control").value = pageTimeElapsed;
+    }
+    window.onload = function() {
+    if(pageTimerID == -1){
+    pageTimerID = setInterval(pageTick, 1);
+  }
+};
+</script>
+
+
+    {% next_button %}
+
+{% endblock %}

@@ -1,0 +1,244 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+Practice page
+{% endblock %}
+{% block content %}
+
+
+
+<div class="container">
+
+    <div class="column" style="padding-right: 2em;" >
+
+<p> Please indicate the probability with which you think that <br>
+    the statement is true. </p>
+
+<p>
+    <img src = "{% static 'AI_Fotos/Pic1.jpg' %}" width="128" height="128" />
+</p>
+
+
+{% if player.check_order == "high_low" %}
+<table cellpadding="3">
+    <tr>
+        <th> </th>
+        <th>  </th>
+    </tr>
+    <tr>
+        <td style="padding-right:10px; color:#ff8800">
+           1.) Statement 1
+            <img src = "{% static 'implied_reliability/Lupe.jpg' %}" width="30" height="30" />
+            <img src = "{% static 'implied_reliability/Label.png' %}" width="40" height="30" />
+        </td>
+        <td>  </td>
+    </tr>
+    <tr>
+        <td style="padding-right:10px; color:#ff8800">
+            2.) Statement 2
+            <img src = "{% static 'implied_reliability/Lupe.jpg' %}" width="30" height="30" />
+            <img src = "{% static 'implied_reliability/Label.png' %}" width="40" height="30" />
+        </td>
+        <td>  </td>
+    </tr>
+    <tr>
+        <td style="padding-right:10px; color:#ff8800">
+            3.) Statement 3
+        </td>
+        <td>  </td>
+    </tr>
+    <tr>
+        <td style="padding-right:10px; color:#000080">
+            4.) Statement 4
+            <img src = "{% static 'implied_reliability/Lupe.jpg' %}" width="30" height="30" />
+        </td>
+        <td>  </td>
+    </tr>
+    <tr>
+        <td style="padding-right:10px; color:#000080">
+            5.) Statement 5
+            <img src = "{% static 'implied_reliability/Lupe.jpg' %}" width="30" height="30" />
+        </td>
+        <td>  </td>
+    </tr>
+    <tr>
+        <td style="padding-right:10px; color:#ff8800">
+            6.) Statement 6
+        </td>
+        <td>  </td>
+    </tr>
+    <tr>
+        <td style="padding-right:10px; color:#ff8800">
+            7.) Statement 7
+            <img src = "{% static 'implied_reliability/Lupe.jpg' %}" width="30" height="30" />
+            <img src = "{% static 'implied_reliability/Label.png' %}" width="40" height="30" />
+        </td>
+        <td>  </td>
+    </tr>
+    <tr>
+        <td style="padding-right:10px; color:#ff8800">
+             8.) Statement 8
+        </td>
+        <td> </td>
+    </tr>
+    <tr>
+        <td style="padding-right:10px; color:#000080">
+            9.) Statement 9
+            <img src = "{% static 'implied_reliability/Lupe.jpg' %}" width="30" height="30" />
+        </td>
+        <td>   </td>
+    </tr>
+        <td style="padding-right:10px; color:#ff8800">
+            10.) Statement 10 </td>
+        <td> <strong> Your answer</strong> <br>
+            {{ player.demo_10_true }} </td>
+    </tr>
+</table>
+<table cellpadding="10">
+    <tr>
+        <th> </th>
+        <th>  </th>
+    </tr>
+</table>
+<p>
+    Recall that each statement had a <strong>75% chance</strong> of being fact checked. <br>
+    In these examples, the fact checker actually checked the statements <br>
+    that are marked with a magnifier: <img src = "{% static 'implied_reliability/Lupe.jpg' %}" width="20" height="20" /> <br>
+    The <strong> <span style="color: #ff8800"> orange statements </span> </strong>are <strong> <span style="color: #ff8800">wrong</span></strong>. <br>
+    The <strong> <span style="color: #000080"> blue statements </span></strong>are <strong> <span style="color: #000080">correct</span></strong>. <br>
+    If the fact checker checked a wrong statement, it was marked with a label: <img src = "{% static 'implied_reliability/Label.png' %}" width="24" height="18" />
+</p>
+{% endif %}
+
+
+
+{% if player.check_order == "low_high" %}
+<table cellpadding="3">
+    <tr>
+        <th> </th>
+        <th>  </th>
+
+    </tr>
+    <tr>
+        <td style="padding-right:10px; color:#ff8800">
+            1.) Statement 1
+        </td>
+        <td>  </td>
+    </tr>
+    <tr>
+        <td style="padding-right:10px; color:#ff8800">
+            2.) Statement 2
+        </td>
+        <td>  </td>
+    </tr>
+    <tr>
+        <td style="padding-right:10px; color:#ff8800">
+           3.) Statement 3
+        </td>
+        <td> </td>
+    </tr>
+    <tr>
+        <td style="padding-right:10px; color:#000080">
+           4.) Statement 4
+            <img src = "{% static 'implied_reliability/Lupe.jpg' %}" width="30" height="30" />
+
+        </td>
+        <td>  </td>
+    </tr>
+    <tr>
+        <td style="padding-right:10px; color:#000080">
+            5.) Statement 5
+        </td>
+        <td>  </td>
+    </tr>
+    <tr>
+        <td style="padding-right:10px; color:#ff8800">
+            6.) Statement 6
+        </td>
+        <td>  </td>
+    </tr>
+    <tr>
+        <td style="padding-right:10px; color:#ff8800">
+             7.) Statement 7
+            <img src = "{% static 'implied_reliability/Lupe.jpg' %}" width="30" height="30" />
+            <img src = "{% static 'implied_reliability/Label.png' %}" width="40" height="30" />
+        </td>
+        <td>  </td>
+
+    </tr>
+    <tr>
+        <td style="padding-right:10px; color:#ff8800">
+            8.) Statement 8
+        </td>
+        <td>  </td>
+    </tr>
+    <tr>
+        <td style="padding-right:10px; color:#000080">
+           9.) Statement 9
+        </td>
+        <td>   </td>
+
+    </tr>
+        <td style="padding-right:10px; color:#ff8800">
+           10.) Statement 10 </td>
+        </td>
+        <td> <strong> Your answer</strong> <br>
+            {{ player.demo_10_true }} </td>
+    </tr>
+</table>
+<table cellpadding="10">
+    <tr>
+        <th> </th>
+        <th>  </th>
+    </tr>
+</table>
+<p>
+    Recall that each statement had a <strong>25% chance</strong> of being fact checked. <br>
+    In these examples, the fact checker actually checked the statements <br>
+    that are marked with a magnifier: <img src = "{% static 'implied_reliability/Lupe.jpg' %}" width="20" height="20" /> <br>
+    The <strong> <span style="color: #ff8800"> orange statements </span> </strong>are <strong> <span style="color: #ff8800">wrong</span></strong>. <br>
+    The <strong> <span style="color: #000080"> blue statements </span></strong>are <strong> <span style="color: #000080">correct</span></strong>. <br>
+    If the fact checker checked a wrong statement, it was marked with a label: <img src = "{% static 'implied_reliability/Label.png' %}" width="24" height="18" />
+</p>
+{% endif %}
+
+               {% next_button %}
+</div>
+
+
+
+<input type="hidden" name="timeSpent_Demo_b1_101b1" id="timeSpent_Demo_b1_101b1"/>
+
+<script>
+    var pageTimeElapsed = 0;
+    var pageTimerID = -1;
+    function pageTick() {
+    pageTimeElapsed++
+    document.getElementById("timeSpent_Demo_b1_101b1").value = pageTimeElapsed;
+    }
+    window.onload = function() {
+    if(pageTimerID == -1){
+    pageTimerID = setInterval(pageTick, 1);
+  }
+};
+</script>
+
+  <style>
+/* Create two equal columns that floats next to each other */
+.column {
+  float: left;
+}
+
+.left {
+  width: 50%;
+}
+
+.right {
+  width: 50%;
+}
+</style>
+
+
+
+{% endblock %}
